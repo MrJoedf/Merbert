@@ -3,7 +3,9 @@ Command-line file management system that uses more natural-sounding commands tha
 
 When the application is first run, the "source" directory will be your default user directory. All directories you enter will be appended to the source directory.
 
-To set the source directory to another directory, use the format: **setsource "path/folder"** (_Feature in progress_)
+To set the source directory to another directory, use the format: **setsrc "path/folder"** (_Feature in progress_)
+
+To revert back to the default source directory, simply use: **nosrc**
 
 To move files to another directory, use the format: move "keyword" to "otherfolder"
   - This format will search for the keyword in the source folder. To narrow it, use the format: 
