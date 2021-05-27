@@ -53,6 +53,11 @@ def deleteFile(target, location, src=source):
         for match in matches:
             os.remove(match)
 
+def fileify(string):
+    if string[0]!='*':
+        return('*' + string)
+    return string
+
 def findMatch(pattern, path):
     print("FIND MATCH")
     result = []
@@ -66,6 +71,10 @@ def findMatch(pattern, path):
             if pattern in name:
                 print(name)
                 result.append(os.path.join(root, name))
+
+
+
+
 
     return result
 
@@ -96,10 +105,11 @@ def moveTo(target,  location, src=source):
             shutil.move(match, location)
 
 print("MERBERT v0.1")
-commands = ["move", "delete", "sizeof", "make", "rename", "show", "source", "nosource", "end"]
+commands = ["move", "delete", "sizeof", "make", "rename", "show", "setsrc", "nosrc", "end"]
 
 commandLine = ""
 while commandLine != "end":
+    print("SOURCE: ", source)
     commandLine = input("Enter command: ")
 
     print("CL: ", commandLine)
@@ -155,6 +165,22 @@ while commandLine != "end":
 
                 if len(spots)==1:
                     makeFile(spots[0])
+
+        elif command == "setsrc":
+            quoted = re.compile('"[^"]*"')
+            spots = []
+            for value in quoted.findall(commandLine):
+                spots.append(value)
+
+            if len(spots) !=1:
+                print("Invalid input.")
+            else:
+                print(spots)
+                source = spots[0]
+                source = source[1:-1]
+
+        elif command == "nosrc":
+            source = home
 
 
     else:
