@@ -53,11 +53,6 @@ def deleteFile(target, location, src=source):
         for match in matches:
             os.remove(match)
 
-def fileify(string):
-    if string[0]!='*':
-        return('*' + string)
-    return string
-
 def findMatch(pattern, path):
     print("FIND MATCH")
     result = []
